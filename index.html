@@ -5,27 +5,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
+
     <title>Enviar para o Whatsapp</title>
 </head>
 
 <body>
+    <script>
+        function sendWhatsapp() {
+            var phonenumber = "+5545984287495";
+            var name = document.querySelector('.name').value;
+            var email = document.querySelector('.email').value; // Corrigido aqui
+            var message = document.querySelector('.message').value;
+            if (name === "" || email === "" || message === "") {
+                alert("Por favor, preencha todos os campos.");
+                return; // Aborta o envio do formulário
+            } else {
+                var url = "https://wa.me/" + phonenumber + "?text=" +
+                    "Name: " + name + "%0D%0A" +
+                    "Email: " + email + "%0D%0A" +
+                    "Mensagem: " + message + "%0D%0A%0D%0A";
+
+                window.open(url, '_blank').focus();
+            }
+
+
+        }
+
+    </script>
     <div class="formArea">
         <form action="">
             <div class="form">
                 <h1>Envie sua Mensagem</h1>
                 <div class="formInput">
                     <label for="">Nome:</label>
-                    <input type="text" class="name" />
+                    <input type="text" class="name" required />
                 </div>
 
                 <div class="formInput">
                     <label for="">Email: </label>
-                    <input type="email" class="email" />
+                    <input type="email" class="email" required />
                 </div>
 
                 <div class="formInput">
                     <label for="">Mensagem: </label>
-                    <textarea name="message" class="message" id="" cols="30" rows="10"></textarea>
+                    <textarea name="message" class="message" id="" cols="30" rows="10" required></textarea>
                 </div>
 
                 <button type="button" onclick="sendWhatsapp()">Envie via Whatsapp</button>
